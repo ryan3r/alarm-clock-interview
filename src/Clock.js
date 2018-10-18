@@ -24,12 +24,12 @@ class Clock extends Component {
 
     render() {
         let amPm = "am";
-        // get the time
+        // Get the time
         let hour = this.state.date.getHours();
         let minute = this.state.date.getMinutes().toString().padStart(2, 0);
         let second = this.state.date.getSeconds().toString().padStart(2, 0);
 
-        // convert to a 12 hour format
+        // Convert to a 12 hour format
         if(hour >= 12) {
             amPm = "pm";
             hour -= 12;
