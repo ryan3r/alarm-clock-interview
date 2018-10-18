@@ -101,7 +101,7 @@ class Alarm {
         time = Math.floor(time / 24);
 
         let day = time;
-        let s = day != 1 ? "s" : "";
+        let s = day !== 1 ? "s" : "";
 
         return `${day} day${s} ${hour}:${minute}`;
     }
