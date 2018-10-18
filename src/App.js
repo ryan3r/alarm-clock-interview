@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Update the view everytime we load the alarms
     Alarm.onAlarmsReady = () => {
       this.waitForAlarm();
 
