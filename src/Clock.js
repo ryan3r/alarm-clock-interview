@@ -1,20 +1,6 @@
 import React, {Component} from "react";
 import "./Clock.css";
-
-// Convert from a 24 hour format to a 12 hour format
-function convertTo12Hour(hour) {
-    let amPm = "am";
-    if(hour >= 12) {
-        amPm = "pm";
-        hour -= 12;
-    }
-
-    if(hour === 0) {
-        hour = 12;
-    }
-
-    return {hour, amPm};
-}
+import convertTo12Hour from "./12hour.js";
 
 class Clock extends Component {
     constructor(props) {
@@ -51,21 +37,7 @@ class Clock extends Component {
             return <span/>;
         }
 
-        let time = this.props.nextAlarm.nextAlert;
-
-        // Break the time into individual componenets
-        let second = (time % 60).toString().padStart(2, 0);
-        time = Math.floor(time / 60);
-
-        let minute = (time % 60).toString().padStart(2, 0);
-        time = Math.floor(time / 60);
-
-        let hour = (time % 24).toString().padStart(2, 0);
-        time = Math.floor(time / 24);
-
-        let day = time;
-
-        return <div className="clock-next-alarm">Next alarm in {day}:{hour}:{minute}:{second}</div>
+        return <div className="clock-next-alarm">Next alarm in {this.props.nextAlarm.nextAlertString}</div>
     }
 
     render() {

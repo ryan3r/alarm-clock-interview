@@ -1,5 +1,17 @@
+import convertTo12Hour from "./12hour.js";
+
 const SECONDS_IN_DAY = 60 * 60 * 24;
 const SECONDS_IN_WEEK = SECONDS_IN_DAY * 7;
+
+const DAYS_NAMES = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
 
 class Alarm {
     /**
@@ -74,6 +86,41 @@ class Alarm {
                     Alarm.onAlarmsReady();
                 }
             });
+    }
+
+    get nextAlertString() {
+        let time = this.nextAlert;
+
+        // Break the time into individual componenets
+        time = Math.floor(time / 60);
+
+        let minute = (time % 60).toString().padStart(2, 0);
+        time = Math.floor(time / 60);
+
+        let hour = (time % 24).toString().padStart(2, 0);
+        time = Math.floor(time / 24);
+
+        let day = time;
+        let s = day != 1 ? "s" : "";
+
+        return `${day} day${s} ${hour}:${minute}`;
+    }
+
+    get timeString() {
+        let time = this.seconds;
+
+        // Break the time into individual componenets
+        time = Math.floor(time / 60);
+
+        let minute = (time % 60).toString().padStart(2, 0);
+        time = Math.floor(time / 60);
+
+        let {hour, amPm} = convertTo12Hour(time % 24);
+        time = Math.floor(time / 24);
+
+        let day = DAYS_NAMES[this.day];
+
+        return `${day} at ${hour}:${minute}${amPm}`;
     }
 }
 

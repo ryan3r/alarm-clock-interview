@@ -3,6 +3,7 @@ import "./App.css";
 import Clock from "./Clock.js";
 import AlarmControls from "./AlarmControls.js";
 import Alarm from "./AlarmService.js";
+import AlarmList from "./AlarmList.js";
 
 class App extends Component {
   constructor(props) {
@@ -59,6 +60,8 @@ class App extends Component {
         <AlarmControls
           visible={this.state.alarmTriggered}
           dismiss={this.dismiss}/>
+        <AlarmList
+          alarms={Alarm.alarms}/>
         <div className="footer">
           <h3>Attibution</h3>
           <p>
