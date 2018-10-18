@@ -22,6 +22,19 @@ class App extends Component {
   }
 
   componentDidMount() {
+    Alarm.onAlarmsReady = () => {
+      this.waitForAlarm();
+
+      this.setState({
+        alarmTriggered: false,
+        nextAlarm: Alarm.nextAlarm
+      });
+    };
+
+    Alarm.loadAll();
+  }
+
+  waitForAlarm() {
     // Wait for the next alarm to go off
     this._alarmTimer = Alarm.waitForNextAlarm(() => {
       this.setState({
@@ -29,19 +42,20 @@ class App extends Component {
       });
 
       // Start waiting for the next alarm
-      this.componentDidMount();
+      this.waitForAlarm();
     });
   }
 
   componentWillUnmount() {
     clearTimeout(this._alarmTimer);
+    Alarm.onAlarmsReady = undefined;
   }
 
   render() {
     return (
       <div>
         <Clock 
-          nextAlarm={Alarm.nextAlarm}/>
+          nextAlarm={this.state.nextAlarm}/>
         <AlarmControls
           visible={this.state.alarmTriggered}
           dismiss={this.dismiss}/>

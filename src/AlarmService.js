@@ -54,13 +54,29 @@ class Alarm {
      * @param {Function} cb 
      */
     static waitForNextAlarm(cb) {
+        if(!Alarm.nextAlarm) return;
+
         return setTimeout(cb, Alarm.nextAlarm.nextAlert * 1000);
+    }
+
+    /**
+     * Load the alarms from the server
+     */
+    static loadAll() {
+        return fetch("//localhost:3001/alarms")
+            .then(res => res.json())
+            .then(alarms => {
+                Alarm.alarms = alarms.map(alarm => {
+                    return new Alarm(alarm.day, alarm.seconds)
+                });
+
+                if(Alarm.onAlarmsReady) {
+                    Alarm.onAlarmsReady();
+                }
+            });
     }
 }
 
-Alarm.alarms = [
-    new Alarm(5, ((11 * 60) + 41) * 60),
-    new Alarm(4, ((12 * 60) + 8) * 60)
-];
+Alarm.alarms = [];
 
 export default Alarm;
