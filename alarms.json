@@ -1,15 +1,30 @@
 {
-    "nextId": 26,
+    "nextId": 31,
     "alarms": [
         {
-            "id": 21,
-            "day": 4,
-            "seconds": 69600
+            "id": 26,
+            "day": 1,
+            "seconds": 25200
         },
         {
-            "id": 25,
+            "id": 27,
             "day": 2,
-            "seconds": 63000
+            "seconds": 32400
+        },
+        {
+            "id": 28,
+            "day": 3,
+            "seconds": 32400
+        },
+        {
+            "id": 29,
+            "day": 4,
+            "seconds": 27900
+        },
+        {
+            "id": 30,
+            "day": 5,
+            "seconds": 29700
         }
     ]
 }
