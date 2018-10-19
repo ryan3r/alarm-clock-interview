@@ -6,11 +6,8 @@ var util = require("util");
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
-const ALARMS_JSON = path.join(__dirname, "../alarms.json");
 
-// The id to use for the next item created
-let nextId = require(ALARMS_JSON)
-  .reduce((id, alarm) => Math.max(id, alarm.id), 1);
+const ALARMS_JSON = path.join(__dirname, "../alarms.json");
 
 router.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -24,9 +21,11 @@ router.get('/', function(req, res) {
 
 // delete an alarm 
 router.get("/delete/:id", async function(req, res) {
-  let alarms = JSON.parse(await readFile(ALARMS_JSON, "utf8"));
-  alarms = alarms.filter(alarm => alarm.id !== +req.params.id);
-  await writeFile(ALARMS_JSON, JSON.stringify(alarms, null, 4));
+  let data = JSON.parse(await readFile(ALARMS_JSON, "utf8"));
+
+  data.alarms = data.alarms.filter(alarm => alarm.id !== +req.params.id);
+
+  await writeFile(ALARMS_JSON, JSON.stringify(data, null, 4));
 
   res.writeHead(200, {
     "Content-Type": "text/plain"
@@ -37,15 +36,15 @@ router.get("/delete/:id", async function(req, res) {
 
 // create a new alarm
 router.get("/create", async function(req, res) {
-  let alarms = JSON.parse(await readFile(ALARMS_JSON, "utf8"));
+  let data = JSON.parse(await readFile(ALARMS_JSON, "utf8"));
 
-  alarms.push({
-    id: nextId++,
+  data.alarms.push({
+    id: data.nextId++,
     day: +req.query.day,
     seconds: +req.query.seconds
   });
 
-  await writeFile(ALARMS_JSON, JSON.stringify(alarms, null, 4));
+  await writeFile(ALARMS_JSON, JSON.stringify(data, null, 4));
 
   res.writeHead(200, {
     "Content-Type": "text/plain"

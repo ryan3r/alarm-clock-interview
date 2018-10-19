@@ -1,17 +1,15 @@
-[
-    {
-        "id": 1,
-        "day": 6,
-        "seconds": 42060
-    },
-    {
-        "id": 8,
-        "day": 4,
-        "seconds": 68280
-    },
-    {
-        "id": 9,
-        "day": 4,
-        "seconds": 68340
-    }
-]
+{
+    "nextId": 15,
+    "alarms": [
+        {
+            "id": 13,
+            "day": 4,
+            "seconds": 69000
+        },
+        {
+            "id": 14,
+            "day": 5,
+            "seconds": 43800
+        }
+    ]
+}

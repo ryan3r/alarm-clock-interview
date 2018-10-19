@@ -20,7 +20,9 @@ class AlarmControls extends Component {
             <div style={{textAlign: "center"}}>
                 <button onClick={this.props.dismiss}>Dismiss</button>
                 <span> (Sound on)</span>
-                <audio src={AlarmClip} ref={this._sound}></audio>
+                <audio ref={this._sound}>
+                    <source src={AlarmClip} type="audio/mp3"/>
+                </audio>
             </div>
         );
     }

@@ -79,8 +79,8 @@ class Alarm {
     static loadAll() {
         return fetch("//localhost:3001/alarms")
             .then(res => res.json())
-            .then(alarms => {
-                Alarm.alarms = alarms.map(alarm => {
+            .then(data => {
+                Alarm.alarms = data.alarms.map(alarm => {
                     return new Alarm(alarm.id, alarm.day, alarm.seconds)
                 });
 
