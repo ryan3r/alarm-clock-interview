@@ -2,11 +2,12 @@ import React, {Component} from "react";
 import Alarm from "./AlarmService";
 
 class AlarmList extends Component {
-    makeDelete(i) {
+    // create a function to delete an alarm
+    makeDelete(id) {
         return async (event) => {
             event.preventDefault();
 
-            const res = await (await fetch(`//localhost:3001/alarms/delete/${i}`)).text();
+            const res = await (await fetch(`//localhost:3001/alarms/delete/${id}`)).text();
             // reload the alarms
             Alarm.loadAll();
             if (res !== "Ok") {
@@ -16,6 +17,7 @@ class AlarmList extends Component {
     }
 
     render() {
+        // create a list of alarms with their alert time and the time until their next alert
         let alarms = this.props.alarms.map(alarm => {
             return <li key={`${alarm.id}`} className="alarm-list-alarm">
                 {alarm.timeString} (Next alert in {alarm.nextAlertString})
