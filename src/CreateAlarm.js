@@ -48,7 +48,7 @@ class AlarmList extends Component {
 
     render() {
         return (
-            <form onSubmit={this.createAlarm}>
+            <form onSubmit={this.createAlarm} style={{textAlign: "center", marginTop: "15px"}}>
                 <select onChange={this.updateText("day")} value={this.state.day}>
                     <option value="0">Sunday</option>
                     <option value="1">Monday</option>

@@ -1,15 +1,40 @@
 {
-    "nextId": 15,
+    "nextId": 24,
     "alarms": [
         {
-            "id": 13,
+            "id": 17,
             "day": 4,
-            "seconds": 69000
+            "seconds": 69300
         },
         {
-            "id": 14,
-            "day": 5,
-            "seconds": 43800
+            "id": 18,
+            "day": 4,
+            "seconds": 69420
+        },
+        {
+            "id": 19,
+            "day": 4,
+            "seconds": 69480
+        },
+        {
+            "id": 20,
+            "day": 0,
+            "seconds": 69540
+        },
+        {
+            "id": 21,
+            "day": 4,
+            "seconds": 69600
+        },
+        {
+            "id": 22,
+            "day": 4,
+            "seconds": 69780
+        },
+        {
+            "id": 23,
+            "day": 4,
+            "seconds": 69840
         }
     ]
 }
