@@ -9,10 +9,13 @@ const writeFile = util.promisify(fs.writeFile);
 
 const ALARMS_JSON = path.join(__dirname, "../alarms.json");
 
-router.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
+// hack to allow the app to run from the react dev server (disabled in production)
+if(process.env.NODE_ENV !== "production") {
+  router.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+  });
+}
 
 // GET alarms
 router.get('/', function(req, res) {

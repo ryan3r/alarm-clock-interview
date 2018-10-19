@@ -1,4 +1,5 @@
 import convertTo12Hour from "./12hour.js";
+import BASE_URL from "./config.js";
 
 const SECONDS_IN_DAY = 60 * 60 * 24;
 const SECONDS_IN_WEEK = SECONDS_IN_DAY * 7;
@@ -77,7 +78,7 @@ class Alarm {
      * Load the alarms from the server
      */
     static loadAll() {
-        return fetch("//localhost:3001/alarms")
+        return fetch(`${BASE_URL}/alarms`)
             .then(res => res.json())
             .then(data => {
                 Alarm.alarms = data.alarms.map(alarm => {

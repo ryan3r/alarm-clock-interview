@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Alarm from "./AlarmService";
+import BASE_URL from "./config";
 
 class AlarmList extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class AlarmList extends Component {
 
         let seconds = ((+match[1] * 60) + +match[2]) * 60;
 
-        const res = await (await fetch(`//localhost:3001/alarms/create?seconds=${seconds}&day=${this.state.day}`))
+        const res = await (await fetch(`${BASE_URL}/alarms/create?seconds=${seconds}&day=${this.state.day}`))
             .text();
         
         // reload the alarms

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Alarm from "./AlarmService";
+import BASE_URL from "./config.js";
 
 class AlarmList extends Component {
     // create a function to delete an alarm
@@ -7,7 +8,7 @@ class AlarmList extends Component {
         return async (event) => {
             event.preventDefault();
 
-            const res = await (await fetch(`//localhost:3001/alarms/delete/${id}`)).text();
+            const res = await (await fetch(`${BASE_URL}/alarms/delete/${id}`)).text();
             // reload the alarms
             Alarm.loadAll();
             if (res !== "Ok") {
