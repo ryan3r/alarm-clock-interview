@@ -16,11 +16,13 @@ const DAYS_NAMES = [
 class Alarm {
     /**
      * An alarm
+     * @param {number} id The id for this alarm
      * @param {number} day The days of the week that the alarm goes off
      * @param {number} seconds The number of seconds into a day the alarm goes off
      *                         (ex: 12:00 am = 0 seconds, 1:00 am = 60 * 60 seconds)
      */
-    constructor(day, seconds) {
+    constructor(id, day, seconds) {
+        this.id = id;
         this.day = day;
         this.seconds = seconds;
     }
@@ -79,7 +81,7 @@ class Alarm {
             .then(res => res.json())
             .then(alarms => {
                 Alarm.alarms = alarms.map(alarm => {
-                    return new Alarm(alarm.day, alarm.seconds)
+                    return new Alarm(alarm.id, alarm.day, alarm.seconds)
                 });
 
                 if(Alarm.onAlarmsReady) {

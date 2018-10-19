@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import Alarm from "./AlarmService";
-// import "./AlarmList.css";
 
 class AlarmList extends Component {
     makeDelete(i) {
@@ -17,10 +16,10 @@ class AlarmList extends Component {
     }
 
     render() {
-        let alarms = this.props.alarms.map((alarm, i) => {
-            return <li key={`${alarm.timeString}-${alarm.nextAlertString}`} className="alarm-list-alarm">
+        let alarms = this.props.alarms.map(alarm => {
+            return <li key={`${alarm.id}`} className="alarm-list-alarm">
                 {alarm.timeString} (Next alert in {alarm.nextAlertString})
-                [<a href={`/alarms/delete/${i}`} onClick={this.makeDelete(i)}>Delete</a>]
+                [<a href={`/alarms/delete/${alarm.id}`} onClick={this.makeDelete(alarm.id)}>Delete</a>]
             </li>;
         });
 

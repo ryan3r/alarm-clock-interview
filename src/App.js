@@ -4,6 +4,7 @@ import Clock from "./Clock.js";
 import AlarmControls from "./AlarmControls.js";
 import Alarm from "./AlarmService.js";
 import AlarmList from "./AlarmList.js";
+import CreateAlarm from "./CreateAlarm.js";
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class App extends Component {
           dismiss={this.dismiss}/>
         <AlarmList
           alarms={Alarm.alarms}/>
+        <CreateAlarm/>
         <div className="footer">
           <h3>Attibution</h3>
           <p>
